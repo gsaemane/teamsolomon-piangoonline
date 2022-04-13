@@ -10,3 +10,25 @@ step 5: Once builder is install go to Builder and select plugin. If Piangoonline
 plugins<br/>
 step 6: click on the piangoonline plugin to select it.<br/>
 step 7: go to versions option under builder plugin and run the latest version to start the migration and provisioning.
+
+# DEMO ACCESS
+NLU Level Account<br/>
+---------------------<br/>
+user: geof@dse.com.sb<br/>
+pass: Password<br/>
+<br/>
+user: jhertz@fiji.com<br/>
+pass: Password<br/>
+<br/>
+PIFS Level Accounts<br/>
+--------------------<br/>
+user: general@pifs.com<br/>
+pass: Password<br/>
+<br/>
+PIANGO Level Account<br/>
+--------------------<br/>
+user:executive@piango.com<br/>
+pass:Password<br/>
+<br/>
+#CONTACTS
+Email: brian@itsup.com.sb
