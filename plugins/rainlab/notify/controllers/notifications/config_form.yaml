@@ -1,0 +1,16 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+name: Notification Rule
+form: $/rainlab/notify/models/notificationrule/fields.yaml
+modelClass: RainLab\Notify\Models\NotificationRule
+defaultRedirect: rainlab/notify/notifications
+
+create:
+    redirect: rainlab/notify/notifications/update/:id
+    redirectClose: rainlab/notify/notifications
+
+update:
+    redirect: rainlab/notify/notifications
+    redirectClose: rainlab/notify/notifications

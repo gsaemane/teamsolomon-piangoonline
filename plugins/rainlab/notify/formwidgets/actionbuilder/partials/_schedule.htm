@@ -1,0 +1,22 @@
+<div class="form-preview">
+    <p>
+        <i class="icon-clock-o"></i>
+        <?= e(__('Schedule')) ?>
+    </p>
+    <p>
+        <?= $actionScheduleFormWidget->render() ?>
+    </p>
+    <div class="small">
+        <em>
+            <?php if (in_array($queueDriver, ['sync', 'sqs'])): ?>
+                <i class="icon-warning"></i>
+                <?= e(__('The configured queue driver does not support delayed execution.')) ?>
+            <?php else: ?>
+                <?= e(__('Note that scheduling might not work for certain queue driver configurations.')) ?>
+            <?php endif ?>
+        </em>
+        <a target="_blank" href="https://octobercms.com/docs/services/queues#basic-usage">
+            <?= e(__('Learn more')) ?>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,75 @@
+
+<form role="form"
+    data-request="{{ __SELF__ }}::onSave"
+    data-request-success="$el.hide();$('.confirm-container').removeClass('hide');">
+
+    <div class="row">
+                                                        
+        <div class="col-md-12">
+            
+                <div class="form-group">
+                    <label><strong>Topic</strong></label>
+                    <input type="text" name="Issue[title]"
+                    id="registerName" class="form-control" placeholder="Title">
+                </div>
+                
+                <div class="form-group">
+                    <label><strong>Description</strong></label>
+                    <textarea type="text" name="Issue[description]"
+                    id="" class="form-control" placeholder="Describe the issue"></textarea>
+                </div>
+                <div class="form-group">
+
+                        <label><strong>Status</strong></label>
+
+                        <select class="form-control" id="stat-selection-registration" name="Issue[status]">
+                        {% for stat in statuses %}
+                        <option id="{{stat.id}}" value="{{stat.id}}">{{stat.summary}}</option>
+                        {% endfor %}
+                        </select>
+
+                </div>
+               
+                <div class="form-group">
+                    <label><strong>Categories</strong></label>
+
+                    <select class="form-control" id="country-selection-registration" name="Issue[category]">
+                        {% for category in categories %}
+                        <option id="{{category.title}}" value="{{category.title}}">{{category.title}}</option>
+                        {% endfor %}
+                    </select>
+                                                                                </div>
+                                                                <div class="form-group">
+                                                                            <label><strong>Country</strong></label>
+                                               
+                    <select class="form-control" id="country-selection-registration" name="Issue[country]">
+                        {% for country in countries %}
+                        <option id="{{country.code}}" value="{{country.id}}">{{country.name}}</option>
+                        {% endfor %}
+                    </select>
+                                                                                </div>
+                                                                                
+                                                                                <div class="form-group">
+                                                                            <label><strong>NLU Organiziation</strong></label>
+                                           
+                    <select class="form-control" id="country-selection-registration" name="Issue[nlu_name]">
+                        {%set index = 0%}
+                        {% for ug in groups %}
+                            <option id="{{ug.code}}" value="{{ug.name}}">{{ug.company}}</option>
+                            {% set index = index + 1%}
+                           
+                        {% endfor %}
+                       
+                    </select>
+
+                </div>                                                                
+                
+        </div>
+       
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary btn-block btn-lg" type="submit" value="register">Create Issue</button>
+    </div>
+
+</form>

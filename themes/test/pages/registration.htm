@@ -1,0 +1,73 @@
+title = "registration"
+url = "/registration"
+layout = "register"
+description = "Registration page for NLU users & PIF users"
+is_hidden = 0
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+<?php
+use RainLab\Location\Models\Country;
+use RainLab\User\Models\UserGroup;
+
+function onStart(){
+    
+    $Countries = Country::all();
+    $Groups = UserGroup::all();
+
+    $countries = array();
+    $groups = array();
+
+    //populate countries
+    foreach($Countries as $country){
+        $countries[] = $country;    
+    }
+    //populate user groups
+    foreach($Groups as $group){
+        $groups[] = $group;    
+    }
+    
+    $this['countries'] = $countries;
+    $this['groups'] = $groups;
+
+}
+?>
+==
+<div class="authincation h-100">
+        <div class="container-fluid h-100">
+            <div class="row justify-content-center h-100 align-items-center">
+                <div class="col-md-6">
+                
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                                <div class="auth-form">
+                                <img class="text-center" style="width:auto;height:auto;margin-bottom:20px;" src="{{ 'assets/images/login-logo.png' | theme}}"/>
+                                    <h3 class="text-center mb-4">Register your National Liason Unit</h3>
+                                    
+                                    {% if not user %}
+
+                                        <div class="row">
+                                    
+                                            <div class="col-md-12">
+                                                {% partial account ~ '::register' %}
+                                            </div>
+                                    
+                                        </div>
+                                    
+                                    {% endif %}
+
+                                    <div class="new-account mt-3">
+                                        <p>Already have an account? <a class="text-primary" href="/login">Sign in</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

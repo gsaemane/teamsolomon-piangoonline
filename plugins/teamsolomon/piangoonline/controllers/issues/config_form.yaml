@@ -1,0 +1,10 @@
+name: Issues
+modelClass: TeamSolomon\PiangoOnline\Models\Issue
+form: $/teamsolomon/piangoonline/models/issue/fields.yaml
+defaultRedirect: teamsolomon/piangoonline/issues
+create:
+    redirect: 'teamsolomon/piangoonline/issues/update/:id'
+    redirectClose: teamsolomon/piangoonline/issues
+update:
+    redirect: teamsolomon/piangoonline/issues
+    redirectClose: teamsolomon/piangoonline/issues

@@ -1,0 +1,32 @@
+plugin:
+    name: 'teamsolomon.piangoonline::lang.plugin.name'
+    description: 'teamsolomon.piangoonline::lang.plugin.description'
+    author: 'Team Solomon'
+    icon: oc-icon-user-secret
+    homepage: ''
+navigation:
+    main-menu-item:
+        label: Issues
+        url: teamsolomon/piangoonline/issues
+        icon: icon-bug
+        permissions:
+            - piango.data.user
+    main-menu-item2:
+        label: Configs
+        url: teamsolomon/piangoonline/status
+        icon: icon-life-ring
+        sideMenu:
+            side-menu-item:
+                label: Status
+                url: teamsolomon/piangoonline/status
+                icon: icon-sitemap
+            side-menu-item2:
+                label: Categories
+                url: teamsolomon/piangoonline/categories
+                icon: icon-sitemap
+        permissions:
+            - piango.data.user
+permissions:
+    piango.data.user:
+        tab: 'Piango Admin'
+        label: 'Piango Admin'

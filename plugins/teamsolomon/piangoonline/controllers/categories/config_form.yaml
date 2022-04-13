@@ -1,0 +1,10 @@
+name: Categories
+form: $/teamsolomon/piangoonline/models/category/fields.yaml
+modelClass: TeamSolomon\PiangoOnline\Models\Category
+defaultRedirect: teamsolomon/piangoonline/categories
+create:
+    redirect: 'teamsolomon/piangoonline/categories/update/:id'
+    redirectClose: teamsolomon/piangoonline/categories
+update:
+    redirect: teamsolomon/piangoonline/categories
+    redirectClose: teamsolomon/piangoonline/categories

@@ -1,0 +1,86 @@
+title = "home"
+url = "/"
+layout = "main"
+is_hidden = 0
+
+[session]
+security = "all"
+==
+<?php
+use TeamSolomon\PiangoOnline\Models\Issue;
+
+
+
+function onStart(){
+    
+    $Issues = Issue::all();
+    
+    $issues = array();
+    
+    foreach($Issues as $issue){
+        $issues[] = $issue;
+    }
+    
+    $this['issues'] = $issues;
+    
+   
+
+}
+function onViewNLU(){
+   
+   
+   
+}
+?>
+==
+{% set group_name = user.groups[0].name%}
+       
+       <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+           
+    
+    {% if user %}
+    
+    <div class="row page-titles mx-0">
+    
+        <div class="col-sm-6 p-md-0">
+        
+            <div class="welcome-text p-3">
+                <h4>Hi {{user.name}} {{user.surname}}, welcome back!</h4>    
+                <p class="mb-0">Your portal awaits. <br/>Last seen on : {{ user.last_seen}} </p>        
+                <h5 style="margin:0;p-3"  class="badge badge-rounded badge-secondary">Organization: {{user.company}}</h5>
+                
+            </div>
+        </div>
+                    
+    </div>
+     
+    
+
+   
+    {% endif %}
+    
+    <!-- List view --> 
+    <div>     
+          
+        
+        {%if group_name == "Piango" %}   
+            {% partial 'dashboards/owner'%}    
+        {%elseif group_name == "NLU" %}   
+            {% partial 'dashboards/nlu'%}
+        {%elseif group_name == "PIFS" %}
+          {% partial 'dashboards/pifs'%}
+        {%endif%}
+          
+       
+    </div>
+
+</div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->

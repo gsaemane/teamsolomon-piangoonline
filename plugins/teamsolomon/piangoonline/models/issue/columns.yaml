@@ -1,0 +1,45 @@
+columns:
+    id:
+        label: id
+        type: number
+    title:
+        label: title
+        type: text
+    description:
+        label: description
+        type: text
+    nlu:
+        label: NLU
+        type: number
+    created_at:
+        label: created_at
+        type: datetime
+    updated_at:
+        label: updated_at
+        type: datetime
+    deleted_at:
+        label: deleted_at
+        type: datetime
+    slug:
+        label: slug
+        type: text
+    status_id_id:
+        label: Status
+        type: text
+        select: Summary
+        relation: status
+    nlu_name:
+        label: nlu_name
+        type: text
+    status_id:
+        label: status_id
+        type: number
+    due_date:
+        label: due_date
+        type: text
+    country:
+        label: country
+        type: text
+    category:
+        label: category
+        type: text

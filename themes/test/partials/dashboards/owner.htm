@@ -1,0 +1,155 @@
+==
+<?php
+use RainLab\User\Models\UserGroup;
+use TeamSolomon\PiangoOnline\Models\Issue;
+function onStart(){
+
+    //Get stats
+    
+    //NLU
+    $NLU = UserGroup::where('name','NLU')->get(); 
+    $nlus = array();
+    
+    foreach($NLU as $group){
+        $nlus[]=$group['users'];
+    }
+    
+    $this['nlu'] = $nlus[0];
+    
+    //PIFS
+    $PIFS = UserGroup::where('name','PIFS')->get(); 
+    $pifs = array();
+    
+    foreach($PIFS as $group){
+        $pifs[]=$group['users'];
+    }
+    
+    $this['pifs'] = $pifs[0];
+    
+    $Issues = Issue::all();
+    
+    $issues = array();
+    
+    foreach($Issues as $issue){
+        $issues[] = $issue;
+    }
+    
+    $this['issues'] = $issues;
+    
+    
+    
+}
+?>
+==
+<div class="row">
+    <div class="col-lg-4">
+    
+       <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-user text-primary border-primary"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">NLU Members</div>
+                    <div class="stat-digit">{{nlu | length}}</div>
+                </div>
+            </div>
+       </div><!-- end card -->
+        
+    </div><!-- end col -->
+    
+    
+    <div class="col-lg-4">
+    
+       <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-user text-primary border-primary"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">PIF Members</div>
+                    <div class="stat-digit">{{pifs | length}}</div>
+                </div>
+            </div>
+        </div><!-- end card -->
+        
+    </div><!-- end col -->
+    
+    <div class="col-lg-4">
+    
+       <div class="card">
+            <div class="stat-widget-one card-body">
+                <div class="stat-icon d-inline-block">
+                    <i class="ti-layout-grid2 text-pink border-pink"></i>
+                </div>
+                <div class="stat-content d-inline-block">
+                    <div class="stat-text">Total Issues</div>
+                    <div class="stat-digit">{{issues | length}}</div>
+                </div>
+            </div>
+        </div><!-- end card -->
+        
+    </div><!-- end col -->
+
+</div>
+
+
+<!-- Table list content -->
+<div class="row">
+    
+    <div class="col-lg-12">
+        
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                 <h4>Your Current Issues <span class="badge badge-circle badge-info" style="padding:4px;">{{issues |length}}</span></h4>
+                 <br/>
+                 <div  class="table-responsive">
+                   <table id="piango-issue-tlb" class="table table-responsive-sm">
+                                        <thead>
+                                            <tr>
+                                              <th>ID</th>
+                                                <th>Status</th>
+                                                <th>Title</th>
+                                                <th>Assigned to</th>  
+                                                <th>Country</th>
+                                                <th>Category</th>  
+                                                <th>Created</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {%for issue in issues %}
+                                        
+                                            <tr>
+                                            <th>
+                                                <a href="#" data-toggle="modal" data-target="#issue-update-modal" data-request-data="id:{{issue.id}}">
+                                                      ISS{{issue.id}}
+                                                </a>
+                                            </th>
+                                            <th>
+                                              {% if issue.status.summary == 'Pending' %}
+                                              <span class="badge-rounded badge-primary">{{issue.status.summary}}</span>
+                                              {% elseif issue.status.summary == 'Action' %}
+                                              <span class="badge-rounded badge-info">{{issue.status.summary}}</span>
+                                              {% elseif issue.status.summary == 'Solved' %}
+                                              <span class="badge-rounded badge-success">{{issue.status.summary}}</span>
+                                              {%endif%}
+                                            </th>
+                                            <td>{{issue.title}}</td>
+                                            <td>{{issue.nlu_name}}</td>
+                                            <td>{{issue.country.name}}</td>
+                                            <td>{{issue.category.title}}</td>
+                                            <td>{{issue.created_at}}</td>
+                                             
+                                            </tr>
+                                          
+                                            {%endfor %}
+                                        </tbody>
+                  </table>
+                </div>
+            </div><!-- end card body -->
+        </div><!-- end card -->    
+    
+    
+    </div>
+
+</div>

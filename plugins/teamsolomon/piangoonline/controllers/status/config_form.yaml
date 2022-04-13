@@ -1,0 +1,10 @@
+name: Status
+form: $/teamsolomon/piangoonline/models/status/fields.yaml
+modelClass: TeamSolomon\PiangoOnline\Models\Status
+defaultRedirect: teamsolomon/piangoonline/status
+create:
+    redirect: 'teamsolomon/piangoonline/status/update/:id'
+    redirectClose: teamsolomon/piangoonline/status
+update:
+    redirect: teamsolomon/piangoonline/status
+    redirectClose: teamsolomon/piangoonline/status

@@ -1,0 +1,65 @@
+==
+<!-- Table list content -->
+<div class="row">
+    
+    <div class="col-lg-12">
+        
+        <div class="card">
+            <div class="stat-widget-one card-body">
+                 <h4>Issues needs your attention </h4>
+                 <br/>
+                
+                  
+                 <div  class="table-responsive">
+                   <table id="nlu-issue-tlb" class="table table-responsive-sm">
+                                        <thead>
+                                            <tr>
+                                              <th>ID</th>
+                                                <th>Status</th>
+                                                <th>Title</th>
+                                                <th>Assigned to</th>  
+                                                <th>Country</th>
+                                                <th>Category</th>  
+                                                <th>Created</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                         {%for issue in nlu_issues %}
+                                         
+                                          {% if issue.nlu_name == user.company%}
+                     
+                
+                                            <tr>
+                                            <th>
+                                                
+                                                      ISS{{issue.id}}
+                                                
+                                            </th>
+                                            <th>
+                                              {% if issue.status.summary == 'Pending' %}
+                                              <span class="badge-rounded badge-primary">{{issue.status.summary}}</span>
+                                              {% elseif issue.status.summary == 'Action' %}
+                                              <span class="badge-rounded badge-info">{{issue.status.summary}}</span>
+                                              {% elseif issue.status.summary == 'Solved' %}
+                                              <span class="badge-rounded badge-success">{{issue.status.summary}}</span>
+                                              {%endif%}
+                                            </th>
+                                            <td>{{issue.title}}</td>
+                                            <td>{{issue.nlu_name}}</td>
+                                            <td>{{issue.country.name}}</td>
+                                            <td>{{issue.category.title}}</td>
+                                            <td>{{issue.created_at}}</td>
+                                             
+                                            </tr>
+                                            {%endif%}
+                                            {%endfor %}
+                                        </tbody>
+                  </table>
+                </div>
+            </div><!-- end card body -->
+        </div><!-- end card -->    
+    
+    
+    </div>
+
+</div>

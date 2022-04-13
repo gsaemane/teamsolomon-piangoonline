@@ -1,0 +1,18 @@
+==
+<?php
+function onStart(){
+    
+    $this['id'] = Value('id');    
+}
+?>
+==
+<div class="control-popup modal fade" id="NLUDetail" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <p>This is a very basic ID {{id}}</p>
+            </div>
+        </div>
+    </div>
+</div>

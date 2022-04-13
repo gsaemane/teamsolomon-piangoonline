@@ -1,0 +1,47 @@
+title = "login"
+url = "/login"
+layout = "login"
+is_hidden = 0
+
+[account]
+redirect = "home"
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+
+[session]
+security = "all"
+==
+<div class="authincation h-100">
+        <div class="container-fluid h-100">
+           
+            <div class="row justify-content-center h-100 align-items-center">
+            
+                <div class="col-md-6">
+                
+                    
+                    <div class="authincation-content">
+                        <div class="row no-gutters">
+                            <div class="col-xl-12">
+                            <img class="mb-0" style="width:auto;height:auto;margin-left:30px;margin-top:20px;" src="{{ 'assets/images/login-logo.png' | theme}}"/>
+                                <div class="auth-form">
+                                    {% if not user %}
+                            
+                                    <div class="col-md-12">
+                                        <h3>Sign in</h3>
+                                        {% partial account ~ '::signin' %}
+                                    </div>
+                                {% else %}
+                                    <div>You are already logged in </div>
+                                {% endif %}
+                                {% flash %}
+                                    <div class="alert alert-{{ type == 'error' ? 'danger' : type }}">{{ message }}</div>
+                                {% endflash %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

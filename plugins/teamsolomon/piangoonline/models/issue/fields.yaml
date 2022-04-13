@@ -1,0 +1,55 @@
+fields:
+    title:
+        label: Title
+        span: auto
+        type: text
+    slug:
+        label: Slug
+        span: auto
+        preset:
+            field: title
+            type: slug
+        type: text
+    status:
+        label: Status
+        nameFrom: summary
+        descriptionFrom: description
+        span: auto
+        type: relation
+tabs:
+    fields:
+        description:
+            label: Description
+            size: small
+            span: auto
+            type: textarea
+            tab: Details
+        files:
+            label: Attachments
+            mode: file
+            useCaption: true
+            thumbOptions:
+                mode: crop
+                extension: auto
+            span: auto
+            type: fileupload
+            tab: Details
+        nlu_name:
+            label: NLU
+            span: auto
+            type: text
+            tab: Details
+        country:
+            label: Country
+            nameFrom: name
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Details
+        category:
+            label: Category
+            nameFrom: title
+            descriptionFrom: description
+            span: auto
+            type: relation
+            tab: Details

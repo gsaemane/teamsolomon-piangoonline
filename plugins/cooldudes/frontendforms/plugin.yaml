@@ -1,0 +1,6 @@
+plugin:
+    name: 'cooldudes.frontendforms::lang.plugin.name'
+    description: 'cooldudes.frontendforms::lang.plugin.description'
+    author: 'cool dudes'
+    icon: oc-icon-certificate
+    homepage: ''

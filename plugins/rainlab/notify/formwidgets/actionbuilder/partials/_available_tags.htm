@@ -1,0 +1,23 @@
+<?php if ($availableTags): ?>
+    <div class="form-preview">
+        <p><?= e(__('These variables are available')) ?></p>
+        <div class="control-balloon-selector">
+            <ul>
+                <?php foreach ($availableTags as $tag => $description): ?>
+                    <li
+                        title="<?= $description ?>"
+                        data-control="dragvalue"
+                        data-drag-click="true"
+                        data-text-value="{{ <?= $tag ?> }}">
+                        {{ <?= $tag ?> }}
+                    </li>
+                <?php endforeach ?>
+            </ul>
+        </div>
+        <div class="small"><em><?= e(__('Click or drag these in to the content area')) ?></em></div>
+    </div>
+<?php else: ?>
+    <div class="form-preview">
+        <div><?= e(__('This action does not provide any variables.')) ?></div>
+    </div>
+<?php endif ?>

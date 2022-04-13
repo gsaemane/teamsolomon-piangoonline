@@ -1,0 +1,61 @@
+title = "account"
+url = "/account"
+layout = "main"
+description = "User profile page"
+is_hidden = 0
+
+[account]
+paramCode = "code"
+forceSecure = 0
+requirePassword = 0
+==
+<!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <div class="container-fluid">
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Your Details</h4>
+                            </div>
+                            <div class="card-body">
+                               <h4>{{user.name }} {{user.surname}}</h4>
+                               <p>Email: {{user.email}}</p>
+                               <p>Username: {{user.username}}</p>
+                               <p>Phone: {{user.phone}}</p>
+                               <p>Company: {{user.company}}</p>
+                               <p>Country: {{user.country}}</p>
+                               <p>Last seen: {{user.last_seen}}</p>
+                                
+                            </div>
+                            <div class="card-footer">
+                                
+                            </div>
+                        </div>
+                    
+                    
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Update Details</h4>
+                            </div>
+                            <div class="card-body">
+                               
+                                {% component 'account' %}
+                            </div>
+                            <div class="card-footer">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->

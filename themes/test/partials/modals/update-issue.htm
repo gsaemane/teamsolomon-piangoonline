@@ -1,0 +1,153 @@
+[entryForm]
+==
+<?php
+use RainLab\Location\Models\Country;
+use TeamSolomon\PiangoOnline\Models\Category;
+use TeamSolomon\PiangoOnline\Models\Status;
+use TeamSolomon\PiangoOnline\Models\Issue;
+use RainLab\User\Models\UserGroup;
+
+function onStart(){
+   // $this[Issue] = Issue::where('id',post("id"))->first();
+   //$this['Issue'] = post('issue');
+     //get countries
+    $Countries = Country::all();
+    
+    $countries = array();
+    
+    foreach($Countries as $country){ $countries[] = $country;}
+    
+    //get categories
+    $Categories = Category::all();
+    $categories  = array();
+    foreach($Categories as $category){$categories[] = $category;}
+    
+     //get groups
+     $Groups = UserGroup::where('name','NLU')->get();
+     $groups = array();
+     $user_email;
+     foreach($Groups as $group){
+         $groups[] = $group['users'];
+        
+     }
+     
+     //get statuses 
+     $Statuses = Status::all();
+     $statuses = array();
+     foreach($Statuses as $status){ $statuses[] = $status;}
+     
+     
+     $this['countries'] = $countries; 
+     $this['categories'] = $categories; 
+     $this['statuses'] = $statuses;
+     $this['groups'] = $groups[0]; 
+     
+     
+     
+    
+    }
+
+
+?>
+==
+<div class="modal fade bd-example-modal-lg" id="issue-update-modal" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog" role="document" id="Mdialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Issue: ISS{{Issue.id}}</h5>
+                    <button type="button" class="close" data-dismiss="modal"><span>×</span>
+                    </button>
+            </div>
+            <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="confirm-container alert alert-success d-none">
+                            <p>Successfully added a new entry!</p>
+                        </div>
+                                                       
+                        <form role="form"
+                                                            data-request="{{ entryForm }}::onUpdate"
+                                                            data-request-success="$el.hide();$('.confirm-container').removeClass('d-none');$('#closebtn').removeClass('d-none');">
+
+                                                            <div class="row">
+                                                                                                                
+                                                                <div class="col-md-12">
+                                                                    
+                                                                        <div class="form-group">
+                                                                            <label><strong>Title</strong></label>
+                                                                            <input type="text" name="Issue[title]"
+                                                                            id="registerName" class="form-control" placeholder="Title" value="{{Issue.title}}">
+                                                                        </div>
+                                                                        
+                                                                        <div class="form-group">
+                                                                            <label><strong>Description</strong></label>
+                                                                            <textarea type="text" name="Issue[description]"
+                                                                            id="" class="form-control" placeholder="Describe the issue"></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+
+                                                                                <label><strong>Status</strong></label>
+
+                                                                                <select class="form-control" id="stat-selection-registration" name="Issue[status]">
+                                                                                {% for stat in statuses %}
+                                                                                {% if stat.id == 3 %} 
+                                                                                <option id="{{stat.id}}" value="{{stat.id}}" selected>{{stat.summary}}</option>
+                                                                               
+                                                                                {% endif %}
+
+                                                                                {% endfor %}
+                                                                                </select>
+
+                                                                        </div>
+                                                                    
+                                                                        <div class="form-group">
+                                                                            <label><strong>Categories</strong></label>
+
+                                                                            <select class="form-control" id="country-selection-registration" name="Issue[category]">
+                                                                                {% for category in categories %}
+                                                                                <option id="{{category.title}}" value="{{category.id}}">{{category.title}}</option>
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                                                                                        </div>
+                                                                                                                        <div class="form-group">
+                                                                                                                                    <label><strong>Country</strong></label>
+                                                                                                    
+                                                                            <select class="form-control" id="country-selection-registration" name="Issue[country]">
+                                                                                {% for country in countries %}
+                                                                                <option id="{{country.code}}" value="{{country.id}}">{{country.name}}</option>
+                                                                                {% endfor %}
+                                                                            </select>
+                                                                                                                                        </div>
+                                                                                                                                        
+                                                                                                                                        <div class="form-group">
+                                                                                                                                    <label><strong>NLU Organiziation</strong></label>
+                                                                                                
+                                                                            <select class="form-control" id="country-selection-registration" name="Issue[nlu_name]">
+                                                                                {%set index = 0%}
+                                                                                {% for ug in groups %}
+                                                                                    <option id="{{ug.code}}" value="{{ug.company}}">{{ug.company}}</option>
+                                                                                    {% set index = index + 1%}
+                                                                                
+                                                                                {% endfor %}
+                                                                            
+                                                                            </select>
+
+                                                                        </div>                                                                  
+                                                                
+                                                                </div>
+                                                            
+                                                            </div>
+
+                                                            <div class="form-group">
+                                                                <button class="btn btn-primary btn-block btn-lg" type="submit" value="register">Update</button>
+                                                            </div>
+
+                        </form>
+
+                    </div>
+            </div>
+            <div class="modal-footer">                
+                <button type="button" class="btn btn-secondary d-none" data-dismiss="modal" id="closebtn">Okay</button>                                                   
+            </div>                                    
+        </div>
+    </div>
+</div>

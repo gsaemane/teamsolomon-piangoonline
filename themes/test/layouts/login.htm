@@ -1,0 +1,43 @@
+[session]
+security = "all"
+==
+<?php
+use Auth;
+function onBeforePageStart()
+{      
+     $user = Auth::getUser(); 
+    if($user) {
+        return Redirect::to('/');
+    }
+          
+
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Piango Online | Login</title>
+    <link href="{{'assets/css/style.css'|theme }}" rel="stylesheet">
+</head>
+
+<body class="h-100">
+  {% page %}
+     <script src="{{ 'assets/js/jquery.min.js'|theme }}"></script>
+     {% framework extras %}
+    <script>
+        $(window).on('ajaxErrorMessage', function(event, message){
+    
+            // This can be any custom JavaScript you want
+            alert('Something bad happened, mate, here it is: ' + message);
+    
+            // This will stop the default alert() message
+            event.preventDefault();
+    
+        })
+    </script>
+</body>
+</html>

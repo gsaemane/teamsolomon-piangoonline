@@ -1,0 +1,68 @@
+title = "pifs-members"
+url = "/pifs-members"
+layout = "main"
+is_hidden = 0
+==
+<?php
+use RainLab\User\Models\UserGroup;
+
+function onStart(){
+
+    $Groups = UserGroup::where('name','PIFS')->get(); 
+    $groups = array();
+    
+    foreach($Groups as $group){
+        $groups[]=$group['users'];
+    }
+    
+    $this['groups'] = $groups[0];
+    
+}
+?>
+==
+<div class="content-body">
+            <!-- row -->
+            <div class="container-fluid">
+                
+                <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Current PIFS Members</h5>
+                            </div>
+                            <div class="card-body">
+                                 <div  class="table-responsive">
+                                    <table id="pifs-member-tbl" class="table table-responsive-sm">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Organisiation</th>
+                                                <th>State</th>
+                                                <th>Country</th>
+                                             
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        
+                                         {%for users in groups%}
+                                            <tr>
+                                                <td>{{users.name}}</td>
+                                                <td>{{users.email}}</td>
+                                                <td>{{users.company}}</td>
+                                                 <td>{{users.state.name}}</td>
+                                                <td>{{users.country.name}}</td>
+                                             
+                                            </tr>
+                                            
+                                            {%endfor %}
+                                        </tbody>
+                  </table>
+                </div>
+                            </div>
+                            <div class="card-footer">
+                              
+                            </div>
+                </div><!-- end card-->
+                
+               
+            </div><!-- end container fliud-->
+</div>
